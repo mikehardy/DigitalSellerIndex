@@ -1,6 +1,21 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {Image, Linking, Pressable, StyleSheet, View} from 'react-native';
-import {Avatar, Caption, Surface, Text, useTheme} from 'react-native-paper';
+import {useState} from 'react';
+import {
+  Image,
+  LayoutRectangle,
+  Linking,
+  Pressable,
+  StyleSheet,
+  View,
+} from 'react-native';
+import {
+  Avatar,
+  Caption,
+  Paragraph,
+  Surface,
+  Text,
+  useTheme,
+} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export interface Seller {
@@ -25,15 +40,17 @@ export interface SellerCardProps {
 }
 export function SellerCard(props: SellerCardProps): JSX.Element | null {
   const theme = useTheme();
+  const [hovered, setHovered] = useState(false);
+  const [layout, setLayout] = useState<LayoutRectangle | undefined>();
   const backgroundStyle = {backgroundColor: theme.colors.background, flex: 1};
 
   return (
     <View style={styles.sellerCard}>
-      <Surface style={{flex: 1}}>
-        {props.seller.instagram && (
+      <Surface style={[styles.flex1, styles.sellerCard]}>
+        {props.seller.instagram !== undefined && props.seller.instagram !== '' && (
           <Pressable
             onPress={() => {
-              console.log('instagram');
+              console.log('instagram ' + props.seller.instagram);
               Linking.openURL(
                 'https://instagram.com/' + props.seller.instagram,
               );
@@ -41,7 +58,7 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
             <View style={[styles.horizontal, styles.verticalCenter]}>
               <Icon
                 size={18}
-                style={[styles.padding5, {color: 'fbad50'}]}
+                style={[styles.padding5, styles.instagramColor]}
                 name="instagram"
               />
               <Caption>{props.seller.instagram}</Caption>
@@ -51,16 +68,26 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
         <Pressable
           style={styles.detailsContainer}
           // @ts-ignore - because types don't have onHoverIn/onHoverOut - see react-native-web repo issues
-          onHoverIn={() => console.log('hoverIn')}
-          onHoverOut={() => console.log('hoverOut')}
+          onHoverIn={() => setHovered(true)}
+          onHoverOut={() => setHovered(false)}
+          onLayout={event => {
+            setLayout(event.nativeEvent.layout);
+            console.log(
+              'layout is ' + JSON.stringify(event.nativeEvent.layout),
+            );
+          }}
           onPress={() => {
             console.log('seller: ' + props.seller.etsyShopId);
             Linking.openURL('https://etsy.com/shop/' + props.seller.etsyShopId);
           }}>
-          <Caption>{props.seller.shopName}</Caption>
+          <Paragraph style={styles.verticalCenter}>
+            {props.seller.shopName}
+          </Paragraph>
           <View style={styles.horizontal}>
             <Avatar.Image
               size={24}
+              // in case there is no avatar image, set background to surface color so it's invisible
+              style={{backgroundColor: theme.colors.surface}}
               source={{
                 uri: props.seller.avatarURI,
               }}
@@ -70,15 +97,28 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
                 Seller: {props.seller.seller}
                 {props.seller.city ? ' in ' + props.seller.city : ''}
               </Text>
-              <Caption style={{width: 100, flexWrap: 'wrap'}}>
+              <Caption style={styles.productDescriptionText}>
                 {props.seller.products}
               </Caption>
             </View>
           </View>
           <Image
-            style={{height: 110, width: 110, resizeMode: 'contain'}}
+            style={styles.productImage}
             source={{uri: props.seller.productURI}}
           />
+          {hovered && (
+            <View
+              style={{
+                opacity: 50,
+                backgroundColor: 'grey',
+                position: 'absolute',
+                top: layout?.y,
+                height: layout?.height,
+                left: layout?.x,
+                width: layout?.width,
+              }}
+            />
+          )}
         </Pressable>
       </Surface>
     </View>
@@ -86,6 +126,9 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
 }
 
 const styles = StyleSheet.create({
+  flex1: {
+    flex: 1,
+  },
   detailsContainer: {
     // flex: 1,
     // alignContent: 'center',
@@ -99,15 +142,31 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'center',
   },
   padding5: {
     padding: 5,
   },
   sellerCard: {
-    width: 200,
-    minWidth: 200,
+    width: 250,
+    // minWidth: 200,
     height: 300,
-    minHeight: 200,
+    // minHeight: 200,
     padding: 10,
+    margin: 10,
+  },
+  productDescriptionText: {
+    width: 150,
+    flexWrap: 'wrap',
+  },
+  productImage: {
+    height: 150,
+    width: 150,
+    resizeMode: 'contain',
+    alignSelf: 'center',
+  },
+  instagramColor: {
+    // backgroundColor: 'red',
+    color: '#fbad50',
   },
 });
