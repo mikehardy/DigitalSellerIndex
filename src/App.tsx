@@ -1,69 +1,82 @@
 import appJson from './app.json';
-import {
-  // Button,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
 import {
   initialWindowMetrics,
   SafeAreaProvider,
-  useSafeAreaInsets,
 } from 'react-native-safe-area-context';
-// import {useLinkTo} from '@react-navigation/native';
-import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import {NavigationContainer} from '@react-navigation/native';
-import {Provider as PaperProvider, useTheme} from 'react-native-paper';
+import {Provider as PaperProvider, Title, useTheme} from 'react-native-paper';
 
 import {useAppSettings} from './components/AppSettings';
+import {Seller, SellerCard} from './components/SellerCard';
+import HoverButton from './components/HoverButton';
+
+import sellersJson from './assets/sellers.json';
+import {useState} from 'react';
+import {LayoutSize, useLayoutInfo} from './components/LayoutInfo';
 
 const App = () => {
   const theme = useTheme();
+  const layout = useLayoutInfo();
+
+  // Change number of columns based on window size
+  const columnCount =
+    layout.layoutSize === LayoutSize.large
+      ? 3
+      : layout.layoutSize === LayoutSize.medium
+      ? 2
+      : 1;
+
+  const categories = [
+    'All',
+    'Sewing',
+    'Cross Stitch',
+    'Knit/Crochet',
+    'Embroidery',
+  ];
+  const [currentCategory, setCurrentCategory] = useState('All');
+
+  const sellers: Seller[] = sellersJson.sellers;
   return (
-    <ScrollView contentInsetAdjustmentBehavior="automatic">
-      <View>
-        <Text style={{color: theme.colors.text}}>Digital Seller Index</Text>
+    <View
+      style={[
+        styles.centered,
+        styles.flex1,
+        {backgroundColor: theme.colors.background},
+      ]}>
+      {/* Header content here */}
+      <Title style={styles.centered}>Digital Seller Index</Title>
+
+      {/* Category selectors here */}
+      <View style={styles.horizontal}>
+        {categories.map(category => {
+          console.log('current category? ' + currentCategory);
+          return (
+            <HoverButton
+              key={category}
+              buttonLabel={category}
+              selected={category === currentCategory ? true : false}
+              onPress={(arg: string) => setCurrentCategory(arg)}
+            />
+          );
+        })}
       </View>
-    </ScrollView>
-  );
-};
 
-// *****************************************************************************************************
-// The rest of the file is to set up a react-navigation and react-native-vector-icons demonstration:
-const Tab = createMaterialTopTabNavigator();
-const TopTabNavigator = () => {
-  // Used for status bar layout in react-navigation
-  const insets = useSafeAreaInsets();
-
-  // Allows us to use web-compatible navigation
-  // const linkTo = useLinkTo();
-
-  // Theming items
-  const theme = useTheme();
-  const backgroundStyle = {backgroundColor: theme.colors.background, flex: 1};
-
-  const Seller = () => (
-    <View style={[backgroundStyle, styles.detailsContainer]}>
-      <Icon name="rocket" size={30} color={'red'} />
-      <Text style={{color: theme.colors.text}}>
-        If you see a rocket, react-native-vector-icons is working!
-      </Text>
+      <FlatList
+        persistentScrollbar={true}
+        style={styles.flatList}
+        initialNumToRender={12}
+        contentContainerStyle={styles.flastListContent}
+        data={sellers}
+        keyExtractor={(_unusued, index) => index + ''}
+        key={columnCount}
+        numColumns={columnCount}
+        renderItem={({item, index}) => {
+          // console.log('seller is ' + JSON.stringify(item));
+          return <SellerCard key={index} seller={item} />;
+        }}
+      />
     </View>
-  );
-
-  const screenOptions = {
-    tabBarStyle: {
-      paddingTop: insets.top,
-    },
-  };
-
-  return (
-    <Tab.Navigator initialRouteName="Home" screenOptions={screenOptions}>
-      <Tab.Screen component={App} key={'Home'} name={'Home'} />
-      <Tab.Screen component={Seller} key={'Seller'} name={'Seller'} />
-    </Tab.Navigator>
   );
 };
 
@@ -82,7 +95,7 @@ const TabbedApp = () => {
                 Home: {
                   path: '', // omit '/Home' in the browser URL bar, this is our '/' URL (vs '/App/Home')
                 },
-                Seller: 'seller',
+                // Seller: 'seller/:etsyShopId?',
               },
             },
           }}
@@ -94,7 +107,8 @@ const TabbedApp = () => {
                   : ' '
               }`,
           }}>
-          <TopTabNavigator />
+          {/* <TopTabNavigator /> */}
+          <App />
         </NavigationContainer>
       </PaperProvider>
     </SafeAreaProvider>
@@ -102,28 +116,49 @@ const TabbedApp = () => {
 };
 
 const styles = StyleSheet.create({
-  detailsContainer: {
+  flex1: {
     flex: 1,
+  },
+  centered: {
     alignContent: 'center',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  horizontal: {
+    flexDirection: 'row',
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  flatList: {
+    width: '100%',
+    flex: 1,
+    flexGrow: 1,
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  flastListContent: {
+    // borderColor: 'red',
+    // borderWidth: 1,
+    width: '100%',
+    heigth: '100%',
+    flex: 1,
+    flexGrow: 1,
+    alignContent: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
   },
-  highlight: {
-    fontWeight: '700',
-  },
+  // sectionContainer: {
+  //   marginTop: 32,
+  //   paddingHorizontal: 24,
+  // },
+  // sectionTitle: {
+  //   fontSize: 24,
+  //   fontWeight: '600',
+  // },
+  // sectionDescription: {
+  //   marginTop: 8,
+  //   fontSize: 18,
+  //   fontWeight: '400',
+  // },
+  // highlight: {
+  //   fontWeight: '700',
+  // },
 });
 
 export default TabbedApp;

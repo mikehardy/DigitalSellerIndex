@@ -1501,6 +1501,14 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@mrodrig/json-2-csv-cli@^3.16.0":
+  version "3.16.0"
+  resolved "https://registry.yarnpkg.com/@mrodrig/json-2-csv-cli/-/json-2-csv-cli-3.16.0.tgz#799b3275bd3942b6fe6b3c26c74443d514845487"
+  integrity sha512-Kn9PJpXimdROMyFMYliGdZIObcWZ1alPX6BrSgvSNvllDk+4hAMQ8FF7+d2VybL9mMQEvS9smzy/HfS3xcHbTA==
+  dependencies:
+    commander "8.3.0"
+    json-2-csv "^3.16.0"
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
@@ -1710,6 +1718,11 @@
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@react-native-community/eslint-plugin/-/eslint-plugin-1.1.0.tgz#e42b1bef12d2415411519fd528e64b593b1363dc"
   integrity sha512-W/J0fNYVO01tioHjvYWQ9m6RgndVtbElzYozBq1ZPrHO/iCzlqoySHl4gO/fpCl9QEFjvJfjPgtPMTMlsoq5DQ==
+
+"@react-native-community/hooks@^2.8.1":
+  version "2.8.1"
+  resolved "https://registry.yarnpkg.com/@react-native-community/hooks/-/hooks-2.8.1.tgz#6e785431db49318048fdd14b601998437b6cc200"
+  integrity sha512-DCmCIC0Gn9m6K0Mlg2MwNmTxMEpBu5lTLsI6b/XUAv/vLGa6o+X7RhCai4FWeqkjCU36+ZOwaLzDo4NBWMXaoQ==
 
 "@react-native-masked-view/masked-view@^0.2.6":
   version "0.2.6"
@@ -3967,6 +3980,11 @@ command-exists@^1.2.8:
   resolved "https://registry.yarnpkg.com/command-exists/-/command-exists-1.2.9.tgz#c50725af3808c8ab0260fd60b01fbfa25b954f69"
   integrity sha512-LTQ/SGc+s0Xc0Fu5WaKnR0YiygZkm9eKFvyS+fRsU7/ZWFF8ykFM6Pc9aCVf1+xasOOZpO3BAVgVrKvsqKHV7w==
 
+commander@8.3.0:
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-8.3.0.tgz#4837ea1b2da67b9c616a67afbb0fafee567bca66"
+  integrity sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==
+
 commander@^2.19.0, commander@^2.20.0:
   version "2.20.3"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
@@ -4585,6 +4603,11 @@ dedent@^0.7.0:
   resolved "https://registry.yarnpkg.com/dedent/-/dedent-0.7.0.tgz#2495ddbaf6eb874abb0e1be9df22d2e5a544326c"
   integrity sha1-JJXduvbrh0q7Dhvp3yLS5aVEMmw=
 
+deeks@2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/deeks/-/deeks-2.5.1.tgz#c4e18a00cac3f8ff95a306463db8f533c879f436"
+  integrity sha512-fqrBeUz7f1UqaXDRzVB5RG2EfPk15HJRrb2pMZj8mLlSTtz4tRPsK5leFOskoHFPuyZ6+7aRM9j657fvXLkJ7Q==
+
 deep-equal@^1.0.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/deep-equal/-/deep-equal-1.1.1.tgz#b5c98c942ceffaf7cb051e24e1434a25a2e6076a"
@@ -4765,6 +4788,11 @@ dns-txt@^2.0.2:
   integrity sha1-uR2Ab10nGI5Ks+fRB9iBocxGQrY=
   dependencies:
     buffer-indexof "^1.0.0"
+
+doc-path@3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/doc-path/-/doc-path-3.0.2.tgz#a7df9d58eadce28a2ddd4eda5aa392628fd75b6d"
+  integrity sha512-VRlA2OKSjTbHWj6wmSanxJ338fE/YN8pqmZ0FIWK5JWkIJMFRc4KmD35JtOrnjvVG0WrzOtDDNHx1lN1tkb+lA==
 
 doctrine@^2.1.0:
   version "2.1.0"
@@ -7621,6 +7649,14 @@ jsesc@~0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-0.5.0.tgz#e7dee66e35d6fc16f710fe91d5cf69f70f08911d"
   integrity sha1-597mbjXW/Bb3EP6R1c9p9w8IkR0=
+
+json-2-csv@^3.16.0:
+  version "3.17.0"
+  resolved "https://registry.yarnpkg.com/json-2-csv/-/json-2-csv-3.17.0.tgz#d886e4ec382bdb96dd31cbf87e0206173176d3c7"
+  integrity sha512-mLnrYK3TX/mDSiBduA6vuSuVlvkYgDMv+Ef8HXCriyz73BBc6I7pWljdRfR+FKPzYKcnz/rUvzbqJQx/tbEoMQ==
+  dependencies:
+    deeks "2.5.1"
+    doc-path "3.0.2"
 
 json-parse-better-errors@^1.0.1, json-parse-better-errors@^1.0.2:
   version "1.0.2"

@@ -2,13 +2,16 @@
   "name": "digitalsellerindex",
   "version": "0.0.1",
   "private": true,
+  "homepage": "sellers-index",
   "scripts": {
+    "convert-sellers": "echo '{ \"sellers\":' > ./src/assets/sellers.json && yarn csv2json ./src/assets/sellers.csv > ./src/assets/sellers.json.tmp && tail -n +2 ./src/assets/sellers.json.tmp >> ./src/assets/sellers.json && echo '}' >> ./src/assets/sellers.json && yarn prettier -w ./src/assets/sellers.json ",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "ios:pods": "npx pod-install",
     "start": "react-native start",
     "web": "craco start",
-    "build-web": "craco build",
+    "build-web": "rm -rf build && craco build",
+    "publish-web-mike": "rsync -r build/ mikehardy.net:/home/ec2-user/websites/mikehardy.net/htdocs/sellers-index",
     "test:all": "yarn test:jest",
     "test:jest": "jest",
     "lint:all": "yarn lint:eslint && yarn lint:prettier && yarn lint:types",
@@ -22,6 +25,7 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
+    "@react-native-community/hooks": "^2.8.1",
     "@react-native-masked-view/masked-view": "^0.2.6",
     "@react-navigation/material-top-tabs": "^6.1.1",
     "@react-navigation/native": "^6.0.8",
@@ -44,6 +48,7 @@
     "@babel/core": "^7.17.5",
     "@babel/runtime": "^7.17.2",
     "@craco/craco": "^6.4.3",
+    "@mrodrig/json-2-csv-cli": "^3.16.0",
     "@react-native-community/eslint-config": "^3.0.1",
     "@types/jest": "^27.4.1",
     "@types/react": "^17.0.39",

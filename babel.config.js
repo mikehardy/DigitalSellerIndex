@@ -5,8 +5,10 @@ module.exports = {
     [
       '@babel/plugin-transform-react-jsx',
       {
-        runtime: 'automatic'
-      }
-    ]
+        runtime: 'automatic',
+      },
+    ],
+    ['@babel/plugin-proposal-decorators', {legacy: true}],
+    ['@babel/plugin-proposal-class-properties', {loose: true}],
   ]
 };

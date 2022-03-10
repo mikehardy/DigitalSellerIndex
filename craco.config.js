@@ -84,8 +84,10 @@ module.exports = {
         '@babel/plugin-transform-react-jsx',
         {
           runtime: 'automatic'
-        }
-      ]
+        },
+      ],
+      ['@babel/plugin-proposal-decorators', {legacy: true}],
+      ['@babel/plugin-proposal-class-properties', {loose: true}],
     ],
     loaderOptions: {
       /* Any babel-loader configuration options: https://github.com/babel/babel-loader. */
