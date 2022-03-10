@@ -5,7 +5,12 @@ import {
   SafeAreaProvider,
 } from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
-import {Provider as PaperProvider, Title, useTheme} from 'react-native-paper';
+import {
+  Provider as PaperProvider,
+  Text,
+  Title,
+  useTheme,
+} from 'react-native-paper';
 
 import {useAppSettings} from './components/AppSettings';
 import {Seller, SellerCard} from './components/SellerCard';
@@ -27,13 +32,7 @@ const App = () => {
       ? 2
       : 1;
 
-  const categories = [
-    'All',
-    'Sewing',
-    'Cross Stitch',
-    'Knit/Crochet',
-    'Embroidery',
-  ];
+  const categories = ['All', 'Sewing', 'Cross Stitch', 'Crochet', 'Embroidery'];
   const [currentCategory, setCurrentCategory] = useState('All');
 
   const sellers: Seller[] = sellersJson.sellers;
@@ -46,6 +45,7 @@ const App = () => {
       ]}>
       {/* Header content here */}
       <Title style={styles.centered}>Digital Seller Index</Title>
+      {/* Header content end */}
 
       {/* Category selectors here */}
       <View style={styles.horizontal}>
@@ -61,6 +61,9 @@ const App = () => {
           );
         })}
       </View>
+      {/* Category selectors end */}
+
+      {/* Seller cards here */}
       <FlatList
         persistentScrollbar={true}
         style={styles.flatList}
@@ -89,6 +92,8 @@ const App = () => {
           return <SellerCard key={index} seller={item} />;
         }}
       />
+      {/* End seller cards */}
+      <Text>Hey everyone I am a footer, so hot.</Text>
     </View>
   );
 };
@@ -146,20 +151,20 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   flastListContent: {
-    // borderColor: 'red',
-    // borderWidth: 1,
+    borderColor: 'red',
+    borderWidth: 1,
     width: '100%',
     heigth: '100%',
     flex: 1,
     flexGrow: 1,
     alignContent: 'center',
-    // justifyContent: 'center',
-    // alignItems: 'center',
+    //justifyContent: 'center',
+    alignItems: 'center',
   },
-  // sectionContainer: {
-  //   marginTop: 32,
-  //   paddingHorizontal: 24,
-  // },
+  sectionContainer: {
+    marginTop: 32,
+    //   paddingHorizontal: 24,
+  },
   // sectionTitle: {
   //   fontSize: 24,
   //   fontWeight: '600',

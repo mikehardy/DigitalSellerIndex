@@ -61,7 +61,7 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
                 style={[styles.padding5, styles.instagramColor]}
                 name="instagram"
               />
-              <Caption>{props.seller.instagram}</Caption>
+              {/* <Caption>{props.seller.instagram}</Caption> */}
             </View>
           </Pressable>
         )}
@@ -85,7 +85,7 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
           </Paragraph>
           <View style={styles.horizontal}>
             <Avatar.Image
-              size={24}
+              size={80}
               // in case there is no avatar image, set background to surface color so it's invisible
               style={{backgroundColor: theme.colors.surface}}
               source={{
@@ -109,8 +109,8 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
           {hovered && (
             <View
               style={{
-                opacity: 50,
-                backgroundColor: 'grey',
+                opacity: 0.8,
+                backgroundColor: 'black',
                 position: 'absolute',
                 top: layout?.y,
                 height: layout?.height,
@@ -148,25 +148,26 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   sellerCard: {
-    width: 250,
+    elevation: 0,
+    width: 320,
     // minWidth: 200,
-    height: 300,
+    height: 370,
     // minHeight: 200,
     padding: 10,
     margin: 10,
   },
   productDescriptionText: {
-    width: 150,
+    width: 220,
     flexWrap: 'wrap',
   },
   productImage: {
-    height: 150,
-    width: 150,
+    height: 254,
+    width: 320,
     resizeMode: 'contain',
     alignSelf: 'center',
   },
   instagramColor: {
-    // backgroundColor: 'red',
+    backgroundColor: 'red',
     color: '#fbad50',
   },
 });

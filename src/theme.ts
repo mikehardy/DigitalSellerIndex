@@ -15,7 +15,7 @@ export const darkTheme = {
   colors: {
     ...PaperDarkTheme.colors,
     ...NavigationDarkTheme.colors,
-    primary: '#009688',
+    primary: '#0057B8',
   },
 };
 
@@ -25,7 +25,10 @@ export const defaultTheme = {
   colors: {
     ...PaperDefaultTheme.colors,
     ...NavigationDefaultTheme.colors,
-    primary: '#009688',
+    primary: '#0057B8',
+    accent: 'red',
+    background: '#FFD700',
+    surface: 'white',
   },
 };
 
@@ -37,6 +40,6 @@ export const defaultTheme = {
 //     ...DefaultTheme.colors,
 //     primary: '#009688',
 //     accent: '#fff',
-//     background: '#fff',
+//     background: '#FFD700',
 //   },
 // };
