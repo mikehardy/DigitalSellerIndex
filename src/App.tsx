@@ -61,13 +61,26 @@ const App = () => {
           );
         })}
       </View>
-
       <FlatList
         persistentScrollbar={true}
         style={styles.flatList}
         initialNumToRender={12}
         contentContainerStyle={styles.flastListContent}
-        data={sellers}
+        data={sellers.filter(seller => {
+          if (currentCategory === 'All') {
+            return seller;
+          }
+          if (
+            [
+              seller.category1,
+              seller.category2,
+              seller.category3,
+              seller.category4,
+            ].includes(currentCategory)
+          ) {
+            return seller;
+          }
+        })}
         keyExtractor={(_unusued, index) => index + ''}
         key={columnCount}
         numColumns={columnCount}
