@@ -65,13 +65,16 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
             </View>
           </Pressable>
         )}
+        <Paragraph style={styles.verticalCenter}>
+          {props.seller.shopName}
+        </Paragraph>
         <Pressable
           style={styles.detailsContainer}
           // @ts-ignore - because types don't have onHoverIn/onHoverOut - see react-native-web repo issues
           onHoverIn={() => setHovered(true)}
           onHoverOut={() => setHovered(false)}
           // FIXME we need to have the layout dimensions from a different element I think? This one isn't great
-          // maybe add a View element on take layout on it
+          // maybe add a View element on
           onLayout={event => {
             setLayout(event.nativeEvent.layout);
             console.log(
@@ -82,9 +85,6 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
             console.log('seller: ' + props.seller.etsyShopId);
             Linking.openURL('https://etsy.com/shop/' + props.seller.etsyShopId);
           }}>
-          <Paragraph style={styles.verticalCenter}>
-            {props.seller.shopName}
-          </Paragraph>
           <View style={styles.horizontal}>
             <Avatar.Image
               size={80}
@@ -111,8 +111,8 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
           {hovered && (
             <View
               style={{
-                opacity: 0.5,
-                backgroundColor: 'grey',
+                opacity: 0.8,
+                backgroundColor: 'black',
                 position: 'absolute',
                 top: 0,
                 height: layout!.height - 12, // compensating for margin/border + drop shadow - still not correct!
@@ -150,8 +150,7 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   sellerCard: {
-    elevation: 0,
-    width: 320,
+    width: 300,
     // minWidth: 200,
     height: 370,
     // minHeight: 200,
@@ -159,17 +158,17 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   productDescriptionText: {
-    width: 220,
+    width: 150,
     flexWrap: 'wrap',
   },
   productImage: {
-    height: 254,
-    width: 320,
+    height: 238,
+    width: 300,
     resizeMode: 'contain',
     alignSelf: 'center',
   },
   instagramColor: {
-    backgroundColor: 'red',
+    // backgroundColor: 'red',
     color: '#fbad50',
   },
 });

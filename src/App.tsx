@@ -45,6 +45,14 @@ const App = () => {
       ]}>
       {/* Header content here */}
       <Title style={styles.centered}>Digital Seller Index</Title>
+      <text>
+        If you can spare a few dollars, you can buy something directly from a
+        Ukrainian owned small business. They can really use our help now and why
+        not check out all the great creativity of our fellow makers experiencing
+        some seriously trying times. Thanks to everyone who bought, or shared
+        this information. For a plain, copy and pastable version, go here:
+        Ukrainian Digital Etsy Sellers List (simple)
+      </text>
       {/* Header content end */}
 
       {/* Category selectors here */}
@@ -93,7 +101,10 @@ const App = () => {
         }}
       />
       {/* End seller cards */}
-      <Text>Hey everyone I am a footer, so hot.</Text>
+      <Text>
+        If you would like to add a shop to this list or make a correction,
+        contact me at Instagram. @desewtropia
+      </Text>
     </View>
   );
 };
@@ -151,8 +162,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   flastListContent: {
-    borderColor: 'red',
-    borderWidth: 1,
     width: '100%',
     heigth: '100%',
     flex: 1,
