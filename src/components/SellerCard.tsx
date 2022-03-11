@@ -70,6 +70,8 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
           // @ts-ignore - because types don't have onHoverIn/onHoverOut - see react-native-web repo issues
           onHoverIn={() => setHovered(true)}
           onHoverOut={() => setHovered(false)}
+          // FIXME we need to have the layout dimensions from a different element I think? This one isn't great
+          // maybe add a View element on take layout on it
           onLayout={event => {
             setLayout(event.nativeEvent.layout);
             console.log(
@@ -109,13 +111,13 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
           {hovered && (
             <View
               style={{
-                opacity: 0.8,
-                backgroundColor: 'black',
+                opacity: 0.5,
+                backgroundColor: 'grey',
                 position: 'absolute',
-                top: layout?.y,
-                height: layout?.height,
-                left: layout?.x,
-                width: layout?.width,
+                top: 0,
+                height: layout!.height - 12, // compensating for margin/border + drop shadow - still not correct!
+                left: 0 - 10, // compensating for margin/border
+                width: layout!.width + 20, // compensating for 2x margin/border
               }}
             />
           )}
