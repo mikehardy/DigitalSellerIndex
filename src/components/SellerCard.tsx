@@ -68,7 +68,7 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
             props.seller.instagram !== '' && (
               <Pressable
                 onPress={() => {
-                  console.log('instagram ' + props.seller.instagram);
+                  // console.log('instagram ' + props.seller.instagram);
                   Linking.openURL(
                     'https://instagram.com/' + props.seller.instagram,
                   );
@@ -98,7 +98,7 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
             // );
           }}
           onPress={() => {
-            console.log('seller: ' + props.seller.etsyShopId);
+            // console.log('seller: ' + props.seller.etsyShopId);
             Linking.openURL('https://etsy.com/shop/' + props.seller.etsyShopId);
           }}>
           <View style={[styles.horizontal, styles.marginBottom5]}>

@@ -85,7 +85,7 @@ const App = () => {
       {/* Category selectors here */}
       <View style={styles.horizontal}>
         {categories.map(category => {
-          console.log('current category? ' + currentCategory);
+          // console.log('current category? ' + currentCategory);
           return (
             <HoverButton
               key={category}

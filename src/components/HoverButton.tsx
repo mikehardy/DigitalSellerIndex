@@ -49,7 +49,7 @@ export default function HoverButton(
           style={dynamicStyles.dynamicColors}
           labelStyle={dynamicStyles.dynamicColors}
           onPress={() => {
-            console.log('hoverbutton: ' + props.buttonLabel);
+            // console.log('hoverbutton: ' + props.buttonLabel);
             props.onPress(props.buttonLabel);
           }}>
           {props.buttonLabel}
