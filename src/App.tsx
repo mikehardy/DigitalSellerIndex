@@ -115,11 +115,12 @@ const App = () => {
                 styles.centeredText,
                 styles.blackText,
               ]}>
-              We built this site to highlight digital seller of the kind of
-              crafty things I like, sewing, embroidery, knitting patterns. Feel
-              free to make your own for other digital content sellers! Or, if
-              you want me to add one or make a correction, please get in touch
-              with me at instagram{' '}
+              We built this site to make it easier to find Etsy sellers in
+              Ukraine who sell digital content of the kind of crafty things I
+              like: sewing, embroidery, knitting patterns. Feel free to make
+              your own for other digital content sellers, or, if you want me to
+              add one or make a correction, please get in touch with me at
+              instagram{' '}
               <Pressable
                 onPress={() => {
                   // console.log('instagram ' + props.seller.instagram);
@@ -127,6 +128,22 @@ const App = () => {
                 }}>
                 <Text style={styles.linkText}>@desewtropia</Text>
               </Pressable>
+            </Text>
+            <Text
+              style={[
+                styles.paddedText,
+                styles.centeredText,
+                styles.blackText,
+              ]}>
+              &lt;nerdspeak&gt;
+              <Pressable
+                onPress={() => {
+                  // console.log('instagram ' + props.seller.instagram);
+                  Linking.openURL('https://instagram.com/desewtropia');
+                }}>
+                <Text style={styles.linkText}>Fork the project on GitHub</Text>
+              </Pressable>
+              &lt;/nerdspeak&gt;
             </Text>
             <Text
               style={[
