@@ -35,6 +35,7 @@ export default function HoverButton(
       //margin: layoutInfo.layoutSize === LayoutSize.small ? 0 : 2,
       // marginRight: layoutInfo.layoutSize === LayoutSize.small ? 0 : 5,
       fontSize: layoutInfo.layoutSize === LayoutSize.small ? 10 : 15,
+      color: props.selected ? theme.colors.surface : theme.colors.background,
     },
     dynamicColors: {
       compact: true,
