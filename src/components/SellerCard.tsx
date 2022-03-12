@@ -115,9 +115,9 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
                 backgroundColor: 'black',
                 position: 'absolute',
                 top: 0,
-                height: layout!.height - 12, // compensating for margin/border + drop shadow - still not correct!
+                height: layout ? layout!.height - 12 : 0, // compensating for margin/border + drop shadow - still not correct!
                 left: 0 - 10, // compensating for margin/border
-                width: layout!.width + 20, // compensating for 2x margin/border
+                width: layout ? layout!.width + 20 : 0, // compensating for 2x margin/border
               }}
             />
           )}
