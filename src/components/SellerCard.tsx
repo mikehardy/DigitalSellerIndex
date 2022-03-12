@@ -184,6 +184,6 @@ const styles = StyleSheet.create({
   sellerName: {paddingLeft: 5},
   instagramColor: {
     color: '#0057b7',
-    padding: '0',
+    padding: 0,
   },
 });
