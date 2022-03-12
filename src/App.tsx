@@ -144,8 +144,9 @@ const App = () => {
               &lt;nerdspeak&gt;
               <Pressable
                 onPress={() => {
-                  // console.log('instagram ' + props.seller.instagram);
-                  Linking.openURL('https://instagram.com/desewtropia');
+                  Linking.openURL(
+                    'https://github.com/mikehardy/DigitalSellerIndex#readme',
+                  );
                 }}>
                 <Text style={styles.linkText}>Fork the project on GitHub</Text>
               </Pressable>
