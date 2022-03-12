@@ -52,7 +52,11 @@ const App = () => {
       ) {
         return seller;
       }
-    });
+    })
+    // Now shuffle the sellers by adding a random key to each and sorting on it
+    .map(value => ({value, sort: Math.random()}))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({value}) => value);
 
   return (
     <View
