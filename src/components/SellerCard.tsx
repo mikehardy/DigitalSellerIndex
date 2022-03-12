@@ -59,27 +59,30 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
   return (
     <View style={styles.sellerCard}>
       <Surface style={[styles.flex1, styles.sellerCard]}>
-        {props.seller.instagram !== undefined && props.seller.instagram !== '' && (
-          <Pressable
-            onPress={() => {
-              console.log('instagram ' + props.seller.instagram);
-              Linking.openURL(
-                'https://instagram.com/' + props.seller.instagram,
-              );
-            }}>
-            <View style={[styles.horizontal, styles.verticalCenter]}>
-              <Icon
-                size={18}
-                style={[styles.padding5, styles.instagramColor]}
-                name="instagram"
-              />
-              {/* <Caption>{props.seller.instagram}</Caption> */}
-            </View>
-          </Pressable>
-        )}
-        <Paragraph style={styles.verticalCenter}>
-          {props.seller.shopName}
-        </Paragraph>
+        <View style={[styles.horizontal, styles.allCentered]}>
+          <Paragraph style={[styles.allCentered, styles.black]}>
+            {props.seller.shopName}
+          </Paragraph>
+          {props.seller.instagram !== undefined &&
+            props.seller.instagram !== '' && (
+              <Pressable
+                onPress={() => {
+                  console.log('instagram ' + props.seller.instagram);
+                  Linking.openURL(
+                    'https://instagram.com/' + props.seller.instagram,
+                  );
+                }}>
+                <View style={[styles.horizontal, styles.allCentered]}>
+                  <Icon
+                    size={18}
+                    style={[styles.padding5, styles.instagramColor]}
+                    name="instagram"
+                  />
+                  {/* <Caption>{props.seller.instagram}</Caption> */}
+                </View>
+              </Pressable>
+            )}
+        </View>
         <Pressable
           style={styles.detailsContainer}
           // @ts-ignore - because types don't have onHoverIn/onHoverOut - see react-native-web repo issues
@@ -89,9 +92,9 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
           // maybe add a View element on
           onLayout={event => {
             setLayout(event.nativeEvent.layout);
-            console.log(
-              'layout is ' + JSON.stringify(event.nativeEvent.layout),
-            );
+            // console.log(
+            //   'layout is ' + JSON.stringify(event.nativeEvent.layout),
+            // );
           }}
           onPress={() => {
             console.log('seller: ' + props.seller.etsyShopId);
@@ -107,11 +110,11 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
               }}
             />
             <View>
-              <Text>
+              <Text style={styles.black}>
                 Seller: {props.seller.seller}
                 {props.seller.city ? ' in ' + props.seller.city : ''}
               </Text>
-              <Caption style={styles.productDescriptionText}>
+              <Caption style={[styles.productDescriptionText, styles.black]}>
                 {props.seller.products}
               </Caption>
             </View>
@@ -119,6 +122,7 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
           <Image
             style={styles.productImage}
             source={{uri: props.seller.productURI}}
+            resizeMode="contain"
           />
           {hovered && <View style={dynamicStyles.sellerCardOverlay} />}
         </Pressable>
@@ -140,7 +144,7 @@ const styles = StyleSheet.create({
   horizontal: {
     flexDirection: 'row',
   },
-  verticalCenter: {
+  allCentered: {
     alignContent: 'center',
     justifyContent: 'center',
     alignItems: 'center',
@@ -148,6 +152,12 @@ const styles = StyleSheet.create({
   },
   padding5: {
     padding: 5,
+  },
+  black: {
+    color: 'black',
+  },
+  white: {
+    color: 'white',
   },
   sellerCard: {
     width: 300,
