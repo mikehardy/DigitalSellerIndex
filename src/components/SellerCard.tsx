@@ -69,7 +69,6 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
                     style={[styles.padding5, styles.instagramColor]}
                     name="instagram"
                   />
-                  {/* <Caption>{props.seller.instagram}</Caption> */}
                 </View>
               </Pressable>
             )}
@@ -79,13 +78,8 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
           // @ts-ignore - because types don't have onHoverIn/onHoverOut - see react-native-web repo issues
           onHoverIn={() => setHovered(true)}
           onHoverOut={() => setHovered(false)}
-          // FIXME we need to have the layout dimensions from a different element I think? This one isn't great
-          // maybe add a View element on
           onLayout={event => {
             setLayout(event.nativeEvent.layout);
-            // console.log(
-            //   'layout is ' + JSON.stringify(event.nativeEvent.layout),
-            // );
           }}
           onPress={() => {
             console.log('seller: ' + props.seller.etsyShopId);
@@ -138,12 +132,7 @@ const styles = StyleSheet.create({
   flex1: {
     flex: 1,
   },
-  detailsContainer: {
-    // flex: 1,
-    // alignContent: 'center',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-  },
+  detailsContainer: {},
   horizontal: {
     flexDirection: 'row',
   },
@@ -165,9 +154,7 @@ const styles = StyleSheet.create({
   },
   sellerCard: {
     width: 300,
-    // minWidth: 200,
     height: 370,
-    // minHeight: 200,
     padding: 10,
     margin: 10,
     elevation: 0,

@@ -129,7 +129,6 @@ const App = () => {
               instagram{' '}
               <Pressable
                 onPress={() => {
-                  // console.log('instagram ' + props.seller.instagram);
                   Linking.openURL('https://instagram.com/desewtropia');
                 }}>
                 <Text style={styles.linkText}>@desewtropia</Text>
@@ -173,13 +172,7 @@ const App = () => {
   return (
     <>
       {textOnlyMode && (
-        <ScrollView
-          style={[
-            // styles.centered,
-            styles.flex1,
-            styles.paddedText,
-            // {backgroundColor: theme.colors.background},
-          ]}>
+        <ScrollView style={[styles.flex1, styles.paddedText]}>
           <Text
             style={[styles.paddedText, styles.centeredText, styles.blackText]}>
             For the full version{' '}
@@ -238,7 +231,6 @@ const App = () => {
             key={columnCount}
             numColumns={columnCount}
             renderItem={({item, index}) => {
-              // console.log('seller is ' + JSON.stringify(item));
               return <SellerCard key={index} seller={item} />;
             }}
           />
@@ -255,7 +247,6 @@ const App = () => {
               },
             ]}>
             {categories.map(category => {
-              // console.log('current category? ' + currentCategory);
               return (
                 <HoverButton
                   key={category}
@@ -290,7 +281,6 @@ const TabbedApp = () => {
                 Home: {
                   path: '', // omit '/Home' in the browser URL bar, this is our '/' URL (vs '/App/Home')
                 },
-                // Seller: 'seller/:etsyShopId?',
               },
             },
           }}
@@ -327,8 +317,6 @@ const styles = StyleSheet.create({
   },
   fullWidth: {
     width: '100%',
-    // flex: 1,
-    // flexGrow: 1,
   },
   flastListContent: {
     width: '100%',
@@ -336,21 +324,15 @@ const styles = StyleSheet.create({
     flex: 1,
     flexGrow: 1,
     alignContent: 'center',
-    //justifyContent: 'center',
     alignItems: 'center',
   },
   sectionContainer: {
     marginTop: 12,
-    //   paddingHorizontal: 24,
   },
   headerMiddleBox: {
     width: '80%',
     margin: 10,
     padding: 10,
-    // alignContent: 'center',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    // alignSelf: 'center',
     backgroundColor: '#404040',
   },
   headerTextContainer: {
@@ -365,18 +347,6 @@ const styles = StyleSheet.create({
   whiteText: {color: 'white'},
   blackText: {color: 'black'},
   linkText: {color: '#0057B7', textDecorationLine: 'underline'},
-  // sectionTitle: {
-  //   fontSize: 24,
-  //   fontWeight: '600',
-  // },
-  // sectionDescription: {
-  //   marginTop: 8,
-  //   fontSize: 18,
-  //   fontWeight: '400',
-  // },
-  // highlight: {
-  //   fontWeight: '700',
-  // },
 });
 
 export default TabbedApp;

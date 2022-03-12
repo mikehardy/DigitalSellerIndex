@@ -15,10 +15,8 @@ export default function HoverButton(
   const theme = useTheme();
   const layoutInfo = useLayoutInfo();
   const [hovered, setHovered] = useState(false);
-  // const backgroundStyle = {backgroundColor: theme.colors.background, flex: 1};
 
-  // We will make a dynamic set of colors based on the theme, so that:
-  // 1- if we are selected we want to invert the button
+  // We will need dynamic styling to handle dimension change and theming
   const dynamicStyles = StyleSheet.create({
     buttonContainer: {
       alignContent: 'center',
@@ -30,10 +28,6 @@ export default function HoverButton(
       marginTop: layoutInfo.layoutSize === LayoutSize.small ? 3 : 10,
     },
     dynamicLabelSize: {
-      // paddingLeft: layoutInfo.layoutSize === LayoutSize.small ? 0 : 3,
-      //padding: layoutInfo.layoutSize === LayoutSize.small ? 0 : 3,
-      //margin: layoutInfo.layoutSize === LayoutSize.small ? 0 : 2,
-      // marginRight: layoutInfo.layoutSize === LayoutSize.small ? 0 : 5,
       fontSize: layoutInfo.layoutSize === LayoutSize.small ? 10 : 15,
       color: props.selected ? theme.colors.surface : theme.colors.background,
     },
@@ -59,9 +53,7 @@ export default function HoverButton(
         style={dynamicStyles.buttonContainer}
         // @ts-ignore - because types don't have onHoverIn/onHoverOut - see react-native-web repo issues
         onHoverIn={() => setHovered(true)}
-        onHoverOut={() => setHovered(false)}
-        // onPress={props.onPress}
-      >
+        onHoverOut={() => setHovered(false)}>
         <Button
           mode="outlined"
           compact={true}
@@ -70,10 +62,8 @@ export default function HoverButton(
           labelStyle={[
             dynamicStyles.dynamicColors,
             dynamicStyles.dynamicLabelSize,
-            // {margin: 0, padding: 0},
           ]}
           onPress={() => {
-            // console.log('hoverbutton: ' + props.buttonLabel);
             props.onPress(props.buttonLabel);
           }}>
           {props.buttonLabel}
