@@ -1,5 +1,12 @@
 import appJson from './app.json';
-import {FlatList, StyleSheet, View} from 'react-native';
+import {
+  FlatList,
+  Linking,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  View,
+} from 'react-native';
 import {
   initialWindowMetrics,
   SafeAreaProvider,
@@ -34,6 +41,15 @@ const App = () => {
 
   const categories = ['All', 'Sewing', 'Cross Stitch', 'Crochet', 'Embroidery'];
   const [currentCategory, setCurrentCategory] = useState('All');
+  const [textOnlyMode, setTextOnlyMode] = useState(false);
+
+  const displayModeHandler = (textOnly: boolean) => {
+    // We want the text only mode to always show all sellers
+    if (textOnly) {
+      setCurrentCategory('All');
+    }
+    setTextOnlyMode(textOnly);
+  };
 
   const sellers: Seller[] = sellersJson.sellers;
   const filteredSellers = sellers
@@ -58,52 +74,169 @@ const App = () => {
     .sort((a, b) => a.sort - b.sort)
     .map(({value}) => value);
 
-  return (
-    <View
-      style={[
-        styles.centered,
-        styles.flex1,
-        {backgroundColor: theme.colors.background},
-      ]}>
-      {/* Seller cards here */}
-      <FlatList
-        ListHeaderComponent={HeaderComponent}
-        persistentScrollbar={true}
-        style={[styles.fullWidth, styles.flex1]}
-        initialNumToRender={12}
-        contentContainerStyle={styles.flastListContent}
-        data={filteredSellers}
-        keyExtractor={(_unusued, index) => index + ''}
-        key={columnCount}
-        numColumns={columnCount}
-        renderItem={({item, index}) => {
-          // console.log('seller is ' + JSON.stringify(item));
-          return <SellerCard key={index} seller={item} />;
-        }}
-      />
-
-      {/* Category selectors here */}
-      <View style={styles.horizontal}>
-        {categories.map(category => {
-          // console.log('current category? ' + currentCategory);
-          return (
-            <HoverButton
-              key={category}
-              buttonLabel={category}
-              selected={category === currentCategory ? true : false}
-              onPress={(arg: string) => setCurrentCategory(arg)}
-            />
-          );
-        })}
+  const HeaderComponent = () => {
+    return (
+      <View
+        style={[
+          styles.fullWidth,
+          styles.horizontal,
+          styles.centered,
+          {
+            backgroundColor: theme.colors.primary,
+          },
+        ]}>
+        {/* Here is our middle box providing a little framing */}
+        <View style={styles.headerMiddleBox}>
+          {/* Here is our box with text in it */}
+          <View style={styles.headerTextContainer}>
+            <Headline
+              style={[
+                styles.centered,
+                styles.headerHeadline,
+                styles.blackText,
+              ]}>
+              Ukraine Digital Etsy Sellers List
+            </Headline>
+            <Text
+              style={[
+                styles.paddedText,
+                styles.centeredText,
+                styles.blackText,
+              ]}>
+              If you can spare a few dollars, you can buy something directly
+              from a Ukrainian-owned small business. They can really use our
+              help now and why not check out all the great creativity of our
+              fellow makers experiencing some seriously trying times. Thanks to
+              everyone who bought, or shared this information.
+            </Text>
+            <Text
+              style={[
+                styles.paddedText,
+                styles.centeredText,
+                styles.blackText,
+              ]}>
+              Below are some Ukrainian Etsy sellers who sell digital patterns
+              and tutorials for crafty things I like. If you want to put
+              together your own list of other digital sellers using this format,
+              it's an open source project that{' '}
+              <a href="https://github.com/mikehardy">mikehardy</a> and I built
+              and it's on Github.
+            </Text>
+            <Text
+              style={[
+                styles.paddedText,
+                styles.centeredText,
+                styles.blackText,
+              ]}>
+              For the simple text-only version{' '}
+              <Pressable onPress={() => displayModeHandler(true)}>
+                <Text style={styles.linkText}>go here</Text>
+              </Pressable>
+              .
+            </Text>
+          </View>
+        </View>
       </View>
-      {/* Category selectors end */}
+    );
+  };
 
-      {/* End seller cards */}
-      <Text>
-        If you would like to add a shop to this list or make a correction,
-        contact me at Instagram. @desewtropia
-      </Text>
-    </View>
+  return (
+    <>
+      {textOnlyMode && (
+        <ScrollView
+          style={[
+            // styles.centered,
+            styles.flex1,
+            styles.paddedText,
+            // {backgroundColor: theme.colors.background},
+          ]}>
+          <Text
+            style={[styles.paddedText, styles.centeredText, styles.blackText]}>
+            For the full version{' '}
+            <Pressable onPress={() => displayModeHandler(false)}>
+              <Text style={styles.linkText}>go here</Text>
+            </Pressable>
+            .
+          </Text>
+          <Text
+            style={[styles.paddedText, styles.centeredText, styles.blackText]}>
+            Ukraine Digital Etsy Sellers List
+          </Text>
+          <View style={styles.paddedText} />
+          {filteredSellers.map(seller => {
+            const etsyUrl = 'https://etsy.com/shop/' + seller.etsyShopId;
+            const instaUrl = 'https://instagram.com/' + seller.instagram;
+            return (
+              <>
+                <Pressable onPress={() => Linking.openURL(etsyUrl)}>
+                  <Text style={styles.linkText}>{etsyUrl}</Text>
+                </Pressable>
+                <Text style={styles.blackText}>
+                  Seller: {seller.seller}
+                  {seller.city ? ' in ' + seller.city : ''}
+                </Text>
+                {seller.instagram !== undefined && seller.instagram !== '' && (
+                  <Pressable onPress={() => Linking.openURL(instaUrl)}>
+                    <Text style={styles.linkText}>
+                      Instagram @{seller.instagram}
+                    </Text>
+                  </Pressable>
+                )}
+                <Text style={styles.blackText}>{seller.products}</Text>
+                <View style={styles.paddedText} />
+              </>
+            );
+          })}
+        </ScrollView>
+      )}
+      {!textOnlyMode && (
+        <View
+          style={[
+            styles.centered,
+            styles.flex1,
+            {backgroundColor: theme.colors.background},
+          ]}>
+          {/* Seller cards here */}
+          <FlatList
+            ListHeaderComponent={HeaderComponent}
+            persistentScrollbar={true}
+            style={[styles.fullWidth, styles.flex1]}
+            initialNumToRender={12}
+            contentContainerStyle={styles.flastListContent}
+            data={filteredSellers}
+            keyExtractor={(_unusued, index) => index + ''}
+            key={columnCount}
+            numColumns={columnCount}
+            renderItem={({item, index}) => {
+              // console.log('seller is ' + JSON.stringify(item));
+              return <SellerCard key={index} seller={item} />;
+            }}
+          />
+
+          {/* Category selectors here */}
+          <View style={styles.horizontal}>
+            {categories.map(category => {
+              // console.log('current category? ' + currentCategory);
+              return (
+                <HoverButton
+                  key={category}
+                  buttonLabel={category}
+                  selected={category === currentCategory ? true : false}
+                  onPress={(arg: string) => setCurrentCategory(arg)}
+                />
+              );
+            })}
+          </View>
+          {/* Category selectors end */}
+
+          {/* End seller cards */}
+          <Text>
+            If you would like to add a shop to this list or make a correction,
+            contact me at Instagram. @desewtropia
+          </Text>
+        </View>
+      )}
+    </>
   );
 };
 
@@ -139,49 +272,6 @@ const TabbedApp = () => {
         </NavigationContainer>
       </PaperProvider>
     </SafeAreaProvider>
-  );
-};
-
-const HeaderComponent = () => {
-  const theme = useTheme();
-  return (
-    <View
-      style={[
-        styles.fullWidth,
-        styles.horizontal,
-        styles.centered,
-        {
-          backgroundColor: theme.colors.primary,
-        },
-      ]}>
-      {/* Here is our middle box providing a little framing */}
-      <View style={styles.headerMiddleBox}>
-        {/* Here is our box with text in it */}
-        <View style={styles.headerTextContainer}>
-          <Headline
-            style={[styles.centered, styles.headerHeadline, styles.blackText]}>
-            Ukraine Digital Etsy Sellers List
-          </Headline>
-          <Text
-            style={[styles.paddedText, styles.centeredText, styles.blackText]}>
-            If you can spare a few dollars, you can buy something directly from
-            a Ukrainian-owned small business. They can really use our help now
-            and why not check out all the great creativity of our fellow makers
-            experiencing some seriously trying times. Thanks to everyone who
-            bought, or shared this information.
-          </Text>
-          <Text
-            style={[styles.paddedText, styles.centeredText, styles.blackText]}>
-            Below are some Ukrainian Etsy sellers who sell digital patterns and
-            tutorials for crafty things I like. If you want to put together your
-            own list of other digital sellers using this format, it's an open
-            source project that{' '}
-            <a href="https://github.com/mikehardy">mikehardy</a> and I built and
-            it's on Github.
-          </Text>
-        </View>
-      </View>
-    </View>
   );
 };
 
@@ -239,6 +329,7 @@ const styles = StyleSheet.create({
   headerHeadline: {paddingBottom: 10, textAlign: 'center'},
   whiteText: {color: 'white'},
   blackText: {color: 'black'},
+  linkText: {color: 'blue', textDecorationLine: 'underline'},
   // sectionTitle: {
   //   fontSize: 24,
   //   fontWeight: '600',
