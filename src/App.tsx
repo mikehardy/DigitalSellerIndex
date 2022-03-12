@@ -36,6 +36,23 @@ const App = () => {
   const [currentCategory, setCurrentCategory] = useState('All');
 
   const sellers: Seller[] = sellersJson.sellers;
+  const filteredSellers = sellers
+    // Filter the sellers for current category (or 'All')
+    .filter(seller => {
+      if (currentCategory === 'All') {
+        return seller;
+      }
+      if (
+        [
+          seller.category1,
+          seller.category2,
+          seller.category3,
+          seller.category4,
+        ].includes(currentCategory)
+      ) {
+        return seller;
+      }
+    });
 
   return (
     <View
@@ -51,21 +68,7 @@ const App = () => {
         style={[styles.fullWidth, styles.flex1]}
         initialNumToRender={12}
         contentContainerStyle={styles.flastListContent}
-        data={sellers.filter(seller => {
-          if (currentCategory === 'All') {
-            return seller;
-          }
-          if (
-            [
-              seller.category1,
-              seller.category2,
-              seller.category3,
-              seller.category4,
-            ].includes(currentCategory)
-          ) {
-            return seller;
-          }
-        })}
+        data={filteredSellers}
         keyExtractor={(_unusued, index) => index + ''}
         key={columnCount}
         numColumns={columnCount}
