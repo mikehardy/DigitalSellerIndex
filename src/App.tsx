@@ -190,7 +190,7 @@ const App = () => {
             const etsyUrl = 'https://etsy.com/shop/' + seller.etsyShopId;
             const instaUrl = 'https://instagram.com/' + seller.instagram;
             return (
-              <>
+              <View key={seller.etsyShopId}>
                 <Pressable onPress={() => Linking.openURL(etsyUrl)}>
                   <Text style={styles.linkText}>{etsyUrl}</Text>
                 </Pressable>
@@ -207,7 +207,7 @@ const App = () => {
                 )}
                 <Text style={styles.blackText}>{seller.products}</Text>
                 <View style={styles.paddedText} />
-              </>
+              </View>
             );
           })}
         </ScrollView>
