@@ -124,7 +124,19 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
             source={{uri: props.seller.productURI}}
             resizeMode="contain"
           />
-          {hovered && <View style={dynamicStyles.sellerCardOverlay} />}
+          {hovered && (
+            <View
+              style={[
+                dynamicStyles.sellerCardOverlay,
+                styles.allCentered,
+                styles.padding5,
+              ]}>
+              <Icon color={'white'} name="link" size={48} />
+              <Text style={styles.white}>
+                Go to {props.seller.shopName} and buy some stuff!
+              </Text>
+            </View>
+          )}
         </Pressable>
       </Surface>
     </View>
