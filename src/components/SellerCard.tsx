@@ -44,6 +44,18 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
   const [layout, setLayout] = useState<LayoutRectangle | undefined>();
   const backgroundStyle = {backgroundColor: theme.colors.background, flex: 1};
 
+  const dynamicStyles = StyleSheet.create({
+    sellerCardOverlay: {
+      opacity: 0.8,
+      backgroundColor: 'black',
+      position: 'absolute',
+      top: 0,
+      height: layout ? layout!.height - 12 : 0, // compensating for margin/border + drop shadow - still not correct!
+      left: 0 - 10, // compensating for margin/border
+      width: layout ? layout!.width + 20 : 0, // compensating for 2x margin/border
+    },
+  });
+
   return (
     <View style={styles.sellerCard}>
       <Surface style={[styles.flex1, styles.sellerCard]}>
@@ -108,19 +120,7 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
             style={styles.productImage}
             source={{uri: props.seller.productURI}}
           />
-          {hovered && (
-            <View
-              style={{
-                opacity: 0.8,
-                backgroundColor: 'black',
-                position: 'absolute',
-                top: 0,
-                height: layout ? layout!.height - 12 : 0, // compensating for margin/border + drop shadow - still not correct!
-                left: 0 - 10, // compensating for margin/border
-                width: layout ? layout!.width + 20 : 0, // compensating for 2x margin/border
-              }}
-            />
-          )}
+          {hovered && <View style={dynamicStyles.sellerCardOverlay} />}
         </Pressable>
       </Surface>
     </View>
