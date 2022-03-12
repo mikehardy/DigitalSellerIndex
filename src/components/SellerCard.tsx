@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {useState} from 'react';
 import {
   Image,
@@ -8,15 +7,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import {
-  Avatar,
-  Caption,
-  Headline,
-  Paragraph,
-  Surface,
-  Text,
-  useTheme,
-} from 'react-native-paper';
+import {Avatar, Caption, Surface, Text, useTheme} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export interface Seller {
@@ -43,7 +34,6 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
   const theme = useTheme();
   const [hovered, setHovered] = useState(false);
   const [layout, setLayout] = useState<LayoutRectangle | undefined>();
-  const backgroundStyle = {backgroundColor: theme.colors.background, flex: 1};
 
   const dynamicStyles = StyleSheet.create({
     sellerCardOverlay: {
