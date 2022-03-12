@@ -39,7 +39,7 @@ const App = () => {
       ? 2
       : 1;
 
-  const categories = ['All', 'Sewing', 'Cross Stitch', 'Crochet', 'Embroidery'];
+  const categories = ['All', 'Sew', 'X Stitch', 'Crochet', 'Knit', 'Embroider'];
   const [currentCategory, setCurrentCategory] = useState('All');
   const [textOnlyMode, setTextOnlyMode] = useState(false);
 
