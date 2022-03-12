@@ -24,7 +24,7 @@ import {Seller, SellerCard} from './components/SellerCard';
 import HoverButton from './components/HoverButton';
 
 import sellersJson from './assets/sellers.json';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {LayoutSize, useLayoutInfo} from './components/LayoutInfo';
 
 const App = () => {
@@ -51,28 +51,34 @@ const App = () => {
     setTextOnlyMode(textOnly);
   };
 
-  const sellers: Seller[] = sellersJson.sellers;
-  const filteredSellers = sellers
-    // Filter the sellers for current category (or 'All')
-    .filter(seller => {
-      if (currentCategory === 'All') {
-        return seller;
-      }
-      if (
-        [
-          seller.category1,
-          seller.category2,
-          seller.category3,
-          seller.category4,
-        ].includes(currentCategory)
-      ) {
-        return seller;
-      }
-    })
-    // Now shuffle the sellers by adding a random key to each and sorting on it
-    .map(value => ({value, sort: Math.random()}))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({value}) => value);
+  const [filteredSellers, setFilteredSellers] = useState<Seller[]>([]);
+
+  useEffect(() => {
+    const sellers = sellersJson.sellers;
+    setFilteredSellers(
+      sellers
+        // Filter the sellers for current category (or 'All')
+        .filter(seller => {
+          if (currentCategory === 'All') {
+            return seller;
+          }
+          if (
+            [
+              seller.category1,
+              seller.category2,
+              seller.category3,
+              seller['category4\r'],
+            ].includes(currentCategory)
+          ) {
+            return seller;
+          }
+        })
+        // Now shuffle the sellers by adding a random key to each and sorting on it
+        .map(value => ({value, sort: Math.random()}))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({value}) => value),
+    );
+  }, [currentCategory]);
 
   const HeaderComponent = () => {
     return (
