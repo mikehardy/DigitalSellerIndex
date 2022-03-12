@@ -116,7 +116,7 @@ const TabbedApp = () => {
         <NavigationContainer
           theme={appSettings.currentTheme}
           linking={{
-            prefixes: ['teresahardy.com/digitalsellers', 'localhost'],
+            prefixes: ['teresahardy.com/ukraine', 'localhost'],
             config: {
               screens: {
                 Home: {
