@@ -58,17 +58,38 @@ const App = () => {
         <View style={styles.headerMiddleBox}>
           {/* Here is our box with text in it */}
           <View style={styles.headerTextContainer}>
-            <Headline style={[styles.centered, styles.headerHeadline]}>
-              Digital Seller Index
+            <Headline
+              style={[
+                styles.centered,
+                styles.headerHeadline,
+                styles.blackText,
+              ]}>
+              Ukraine Digital Etsy Sellers List
             </Headline>
-            <Text style={styles.centeredText}>
+            <Text
+              style={[
+                styles.paddedText,
+                styles.centeredText,
+                styles.blackText,
+              ]}>
               If you can spare a few dollars, you can buy something directly
-              from a Ukrainian owned small business. They can really use our
+              from a Ukrainian-owned small business. They can really use our
               help now and why not check out all the great creativity of our
               fellow makers experiencing some seriously trying times. Thanks to
-              everyone who bought, or shared this information. For a plain, copy
-              and pastable version, go here: Ukrainian Digital Etsy Sellers List
-              (simple)
+              everyone who bought, or shared this information.
+            </Text>
+            <Text
+              style={[
+                styles.paddedText,
+                styles.centeredText,
+                styles.blackText,
+              ]}>
+              Below are some Ukrainian Etsy sellers who sell digital patterns
+              and tutorials for crafty things I like. If you want to put
+              together your own list of other digital sellers using this format,
+              it's an open source project that{' '}
+              <a href="https://github.com/mikehardy">mikehardy</a> and I built
+              and it's on Github.
             </Text>
           </View>
         </View>
@@ -175,6 +196,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   centeredText: {textAlign: 'center'},
+  paddedText: {padding: 20},
   horizontal: {
     flexDirection: 'row',
   },
@@ -207,13 +229,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#404040',
   },
   headerTextContainer: {
-    backgroundColor: 'black',
+    backgroundColor: 'white',
     justifyContent: 'center',
     alignContent: 'center',
     padding: 20,
     paddingVertical: 30,
+    margin: 20,
   },
   headerHeadline: {paddingBottom: 10, textAlign: 'center'},
+  whiteText: {color: 'white'},
+  blackText: {color: 'black'},
   // sectionTitle: {
   //   fontSize: 24,
   //   fontWeight: '600',
