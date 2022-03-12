@@ -6,9 +6,9 @@ import {
 } from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
 import {
+  Headline,
   Provider as PaperProvider,
   Text,
-  Title,
   useTheme,
 } from 'react-native-paper';
 
@@ -44,15 +44,35 @@ const App = () => {
         {backgroundColor: theme.colors.background},
       ]}>
       {/* Header content here */}
-      <Title style={styles.centered}>Digital Seller Index</Title>
-      <Text>
-        If you can spare a few dollars, you can buy something directly from a
-        Ukrainian owned small business. They can really use our help now and why
-        not check out all the great creativity of our fellow makers experiencing
-        some seriously trying times. Thanks to everyone who bought, or shared
-        this information. For a plain, copy and pastable version, go here:
-        Ukrainian Digital Etsy Sellers List (simple)
-      </Text>
+      {/* Here is our external blue box */}
+      <View
+        style={[
+          styles.fullWidth,
+          styles.horizontal,
+          styles.centered,
+          {
+            backgroundColor: theme.colors.primary,
+          },
+        ]}>
+        {/* Here is our middle box providing a little framing */}
+        <View style={styles.headerMiddleBox}>
+          {/* Here is our box with text in it */}
+          <View style={styles.headerTextContainer}>
+            <Headline style={[styles.centered, styles.headerHeadline]}>
+              Digital Seller Index
+            </Headline>
+            <Text style={styles.centeredText}>
+              If you can spare a few dollars, you can buy something directly
+              from a Ukrainian owned small business. They can really use our
+              help now and why not check out all the great creativity of our
+              fellow makers experiencing some seriously trying times. Thanks to
+              everyone who bought, or shared this information. For a plain, copy
+              and pastable version, go here: Ukrainian Digital Etsy Sellers List
+              (simple)
+            </Text>
+          </View>
+        </View>
+      </View>
       {/* Header content end */}
 
       {/* Category selectors here */}
@@ -74,7 +94,7 @@ const App = () => {
       {/* Seller cards here */}
       <FlatList
         persistentScrollbar={true}
-        style={styles.flatList}
+        style={[styles.fullWidth, styles.flex1]}
         initialNumToRender={12}
         contentContainerStyle={styles.flastListContent}
         data={sellers.filter(seller => {
@@ -147,19 +167,21 @@ const TabbedApp = () => {
 const styles = StyleSheet.create({
   flex1: {
     flex: 1,
+    flexGrow: 1,
   },
   centered: {
     alignContent: 'center',
     justifyContent: 'center',
     alignItems: 'center',
   },
+  centeredText: {textAlign: 'center'},
   horizontal: {
     flexDirection: 'row',
   },
-  flatList: {
+  fullWidth: {
     width: '100%',
-    flex: 1,
-    flexGrow: 1,
+    // flex: 1,
+    // flexGrow: 1,
   },
   flastListContent: {
     width: '100%',
@@ -174,6 +196,24 @@ const styles = StyleSheet.create({
     marginTop: 32,
     //   paddingHorizontal: 24,
   },
+  headerMiddleBox: {
+    width: '50%',
+    margin: 10,
+    padding: 10,
+    // alignContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    // alignSelf: 'center',
+    backgroundColor: '#404040',
+  },
+  headerTextContainer: {
+    backgroundColor: 'black',
+    justifyContent: 'center',
+    alignContent: 'center',
+    padding: 20,
+    paddingVertical: 30,
+  },
+  headerHeadline: {paddingBottom: 10, textAlign: 'center'},
   // sectionTitle: {
   //   fontSize: 24,
   //   fontWeight: '600',
