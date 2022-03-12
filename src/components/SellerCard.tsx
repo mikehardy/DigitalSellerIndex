@@ -11,6 +11,7 @@ import {
 import {
   Avatar,
   Caption,
+  Headline,
   Paragraph,
   Surface,
   Text,
@@ -50,7 +51,7 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
       backgroundColor: 'black',
       position: 'absolute',
       top: 0,
-      height: layout ? layout!.height : 0, // compensating for margin/border + drop shadow - still not correct!
+      height: layout ? layout!.height : 0,
       left: 0 - 10, // compensating for margin/border
       width: layout ? layout!.width + 20 : 0, // compensating for 2x margin/border
     },
@@ -59,10 +60,10 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
   return (
     <View style={styles.sellerCard}>
       <Surface style={[styles.flex1, styles.sellerCard]}>
-        <View style={[styles.horizontal, styles.allCentered]}>
-          <Paragraph style={[styles.allCentered, styles.black]}>
+        <View style={[styles.horizontal, styles.justifySpaceBetween]}>
+          <Text style={[styles.black, styles.shopNameText]}>
             {props.seller.shopName}
-          </Paragraph>
+          </Text>
           {props.seller.instagram !== undefined &&
             props.seller.instagram !== '' && (
               <Pressable
@@ -100,7 +101,7 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
             console.log('seller: ' + props.seller.etsyShopId);
             Linking.openURL('https://etsy.com/shop/' + props.seller.etsyShopId);
           }}>
-          <View style={styles.horizontal}>
+          <View style={[styles.horizontal, styles.marginBottom5]}>
             <Avatar.Image
               size={80}
               // in case there is no avatar image, set background to surface color so it's invisible
@@ -110,7 +111,7 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
               }}
             />
             <View>
-              <Text style={styles.black}>
+              <Text style={[styles.black, styles.sellerName]}>
                 Seller: {props.seller.seller}
                 {props.seller.city ? ' in ' + props.seller.city : ''}
               </Text>
@@ -132,9 +133,9 @@ export function SellerCard(props: SellerCardProps): JSX.Element | null {
                 styles.padding5,
               ]}>
               <Icon color={'white'} name="link" size={48} />
-              <Text style={styles.white}>
-                Go to {props.seller.shopName} and buy some stuff!
-              </Text>
+              <Text style={styles.white}>Go to the</Text>
+              <Text style={styles.white}>{props.seller.shopName}</Text>
+              <Text style={styles.white}>shop on Etsy!</Text>
             </View>
           )}
         </Pressable>
@@ -165,6 +166,7 @@ const styles = StyleSheet.create({
   padding5: {
     padding: 5,
   },
+  marginBottom5: {marginBottom: 5},
   black: {
     color: 'black',
   },
@@ -178,10 +180,16 @@ const styles = StyleSheet.create({
     // minHeight: 200,
     padding: 10,
     margin: 10,
+    elevation: 0,
   },
   productDescriptionText: {
-    width: 150,
+    width: 210,
+    paddingLeft: 5,
     flexWrap: 'wrap',
+    fontWeight: '300',
+    fontSize: 14,
+    lineHeight: 15,
+    letterSpacing: 0,
   },
   productImage: {
     height: 238,
@@ -189,8 +197,16 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     alignSelf: 'center',
   },
+  shopNameText: {
+    fontWeight: '500',
+    fontSize: 16,
+    lineHeight: 16,
+    paddingBottom: 6,
+  },
+  justifySpaceBetween: {justifyContent: 'space-between'},
+  sellerName: {paddingLeft: 5},
   instagramColor: {
-    // backgroundColor: 'red',
-    color: '#fbad50',
+    color: '#0057b7',
+    padding: '0',
   },
 });
