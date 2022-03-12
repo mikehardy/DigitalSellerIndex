@@ -29,17 +29,24 @@ export default function HoverButton(
     },
     dynamicLabelSize: {
       fontSize: layoutInfo.layoutSize === LayoutSize.small ? 10 : 15,
-      color: props.selected ? theme.colors.surface : theme.colors.background,
+    },
+    // If we are selected, we want to invert the button background, but Ukraine theme requires special handling
+    dynamicLabelColors: {
+      color: theme.dark
+        ? props.selected
+          ? theme.colors.primary
+          : theme.colors.background
+        : theme.colors.primary,
     },
     dynamicColors: {
-      compact: true,
       // if we are not hovered or focused we want the border to blend with background,
-      // but we always want the border there (mode 'outlined') otherwise the layout jumps by borderWidth
-      // when hover happens
+      // but we always want a border (mode 'outlined') otherwise layout jumps by borderWidth onHoverIn
       borderColor:
-        hovered || props.selected ? theme.colors.primary : theme.colors.primary,
+        hovered || props.selected
+          ? theme.colors.background
+          : theme.colors.primary,
 
-      // If we are selected, we want to invert the button background and text
+      // If we are selected, we want to invert the button background
       color: props.selected ? theme.colors.surface : theme.colors.primary,
       backgroundColor: props.selected
         ? theme.colors.background
@@ -60,7 +67,7 @@ export default function HoverButton(
           // eslint-disable-next-line react-native/no-inline-styles
           style={[dynamicStyles.dynamicColors, {borderWidth: 2}]}
           labelStyle={[
-            dynamicStyles.dynamicColors,
+            dynamicStyles.dynamicLabelColors,
             dynamicStyles.dynamicLabelSize,
           ]}
           onPress={() => {
