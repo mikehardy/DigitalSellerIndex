@@ -36,6 +36,7 @@ const App = () => {
   const [currentCategory, setCurrentCategory] = useState('All');
 
   const sellers: Seller[] = sellersJson.sellers;
+
   return (
     <View
       style={[
@@ -43,77 +44,9 @@ const App = () => {
         styles.flex1,
         {backgroundColor: theme.colors.background},
       ]}>
-      {/* Header content here */}
-      {/* Here is our external blue box */}
-      <View
-        style={[
-          styles.fullWidth,
-          styles.horizontal,
-          styles.centered,
-          {
-            backgroundColor: theme.colors.primary,
-          },
-        ]}>
-        {/* Here is our middle box providing a little framing */}
-        <View style={styles.headerMiddleBox}>
-          {/* Here is our box with text in it */}
-          <View style={styles.headerTextContainer}>
-            <Headline
-              style={[
-                styles.centered,
-                styles.headerHeadline,
-                styles.blackText,
-              ]}>
-              Ukraine Digital Etsy Sellers List
-            </Headline>
-            <Text
-              style={[
-                styles.paddedText,
-                styles.centeredText,
-                styles.blackText,
-              ]}>
-              If you can spare a few dollars, you can buy something directly
-              from a Ukrainian-owned small business. They can really use our
-              help now and why not check out all the great creativity of our
-              fellow makers experiencing some seriously trying times. Thanks to
-              everyone who bought, or shared this information.
-            </Text>
-            <Text
-              style={[
-                styles.paddedText,
-                styles.centeredText,
-                styles.blackText,
-              ]}>
-              Below are some Ukrainian Etsy sellers who sell digital patterns
-              and tutorials for crafty things I like. If you want to put
-              together your own list of other digital sellers using this format,
-              it's an open source project that{' '}
-              <a href="https://github.com/mikehardy">mikehardy</a> and I built
-              and it's on Github.
-            </Text>
-          </View>
-        </View>
-      </View>
-      {/* Header content end */}
-
-      {/* Category selectors here */}
-      <View style={styles.horizontal}>
-        {categories.map(category => {
-          console.log('current category? ' + currentCategory);
-          return (
-            <HoverButton
-              key={category}
-              buttonLabel={category}
-              selected={category === currentCategory ? true : false}
-              onPress={(arg: string) => setCurrentCategory(arg)}
-            />
-          );
-        })}
-      </View>
-      {/* Category selectors end */}
-
       {/* Seller cards here */}
       <FlatList
+        ListHeaderComponent={HeaderComponent}
         persistentScrollbar={true}
         style={[styles.fullWidth, styles.flex1]}
         initialNumToRender={12}
@@ -141,6 +74,23 @@ const App = () => {
           return <SellerCard key={index} seller={item} />;
         }}
       />
+
+      {/* Category selectors here */}
+      <View style={styles.horizontal}>
+        {categories.map(category => {
+          console.log('current category? ' + currentCategory);
+          return (
+            <HoverButton
+              key={category}
+              buttonLabel={category}
+              selected={category === currentCategory ? true : false}
+              onPress={(arg: string) => setCurrentCategory(arg)}
+            />
+          );
+        })}
+      </View>
+      {/* Category selectors end */}
+
       {/* End seller cards */}
       <Text>
         If you would like to add a shop to this list or make a correction,
@@ -182,6 +132,49 @@ const TabbedApp = () => {
         </NavigationContainer>
       </PaperProvider>
     </SafeAreaProvider>
+  );
+};
+
+const HeaderComponent = () => {
+  const theme = useTheme();
+  return (
+    <View
+      style={[
+        styles.fullWidth,
+        styles.horizontal,
+        styles.centered,
+        {
+          backgroundColor: theme.colors.primary,
+        },
+      ]}>
+      {/* Here is our middle box providing a little framing */}
+      <View style={styles.headerMiddleBox}>
+        {/* Here is our box with text in it */}
+        <View style={styles.headerTextContainer}>
+          <Headline
+            style={[styles.centered, styles.headerHeadline, styles.blackText]}>
+            Ukraine Digital Etsy Sellers List
+          </Headline>
+          <Text
+            style={[styles.paddedText, styles.centeredText, styles.blackText]}>
+            If you can spare a few dollars, you can buy something directly from
+            a Ukrainian-owned small business. They can really use our help now
+            and why not check out all the great creativity of our fellow makers
+            experiencing some seriously trying times. Thanks to everyone who
+            bought, or shared this information.
+          </Text>
+          <Text
+            style={[styles.paddedText, styles.centeredText, styles.blackText]}>
+            Below are some Ukrainian Etsy sellers who sell digital patterns and
+            tutorials for crafty things I like. If you want to put together your
+            own list of other digital sellers using this format, it's an open
+            source project that{' '}
+            <a href="https://github.com/mikehardy">mikehardy</a> and I built and
+            it's on Github.
+          </Text>
+        </View>
+      </View>
+    </View>
   );
 };
 
