@@ -24,14 +24,14 @@ export default function HoverButton(
       // when hover happens
       borderColor:
         hovered || props.selected
-          ? theme.colors.accent
-          : theme.colors.background,
+          ? theme.colors.background
+          : theme.colors.primary,
 
       // If we are selected, we want to invert the button background and text
-      color: props.selected ? theme.colors.background : theme.colors.primary,
+      color: props.selected ? theme.colors.surface : theme.colors.primary,
       backgroundColor: props.selected
-        ? theme.colors.primary
-        : theme.colors.background,
+        ? theme.colors.background
+        : theme.colors.surface,
     },
   });
 
@@ -46,7 +46,8 @@ export default function HoverButton(
       >
         <Button
           mode="outlined"
-          style={dynamicStyles.dynamicColors}
+          // eslint-disable-next-line react-native/no-inline-styles
+          style={[dynamicStyles.dynamicColors, {borderWidth: 2}]}
           labelStyle={dynamicStyles.dynamicColors}
           onPress={() => {
             // console.log('hoverbutton: ' + props.buttonLabel);
@@ -64,5 +65,9 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 10,
+    marginLeft: 5,
+    marginRight: 5,
+    marginBottom: 10,
   },
 });

@@ -19,6 +19,7 @@ export const darkTheme = {
     accent: '#FFE128',
     primary: '#FFDD00',
     surface: 'white',
+    text: '#404040',
   },
 };
 
@@ -32,6 +33,7 @@ export const defaultTheme = {
     accent: '#FFE128',
     background: '#FFDD00',
     surface: 'white',
+    text: '#404040',
   },
 };
 

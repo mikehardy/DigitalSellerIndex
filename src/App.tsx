@@ -103,11 +103,11 @@ const App = () => {
                 styles.centeredText,
                 styles.blackText,
               ]}>
-              If you can spare a few dollars, you can buy something directly
-              from a Ukrainian-owned small business. They can really use our
-              help now and why not check out all the great creativity of our
-              fellow makers experiencing some seriously trying times. Thanks to
-              everyone who bought, or shared this information.
+              Thank you for visiting. If you have a few spare dollars, you can
+              buy something directly from a Ukrainian-owned digital etsy seller.
+              They can really use our help now. The money goes straight to a
+              human whose home has become a war zone and they don't have to post
+              anything, you will get a digital download directly to your email.
             </Text>
             <Text
               style={[
@@ -115,12 +115,18 @@ const App = () => {
                 styles.centeredText,
                 styles.blackText,
               ]}>
-              Below are some Ukrainian Etsy sellers who sell digital patterns
-              and tutorials for crafty things I like. If you want to put
-              together your own list of other digital sellers using this format,
-              it's an open source project that{' '}
-              <a href="https://github.com/mikehardy">mikehardy</a> and I built
-              and it's on Github.
+              We built this site to highlight digital seller of the kind of
+              crafty things I like, sewing, embroidery, knitting patterns. Feel
+              free to make your own for other digital content sellers! Or, if
+              you want me to add one or make a correction, please get in touch
+              with me at instagram{' '}
+              <Pressable
+                onPress={() => {
+                  // console.log('instagram ' + props.seller.instagram);
+                  Linking.openURL('https://instagram.com/desewtropia');
+                }}>
+                <Text style={styles.linkText}>@desewtropia</Text>
+              </Pressable>
             </Text>
             <Text
               style={[
@@ -128,7 +134,7 @@ const App = () => {
                 styles.centeredText,
                 styles.blackText,
               ]}>
-              For the simple text-only version{' '}
+              For a text-only version,{' '}
               <Pressable onPress={() => displayModeHandler(true)}>
                 <Text style={styles.linkText}>go here</Text>
               </Pressable>
@@ -214,7 +220,16 @@ const App = () => {
           />
 
           {/* Category selectors here */}
-          <View style={styles.horizontal}>
+          <View
+            style={[
+              styles.fullWidth,
+              styles.horizontal,
+              styles.centered,
+
+              {
+                backgroundColor: theme.colors.primary,
+              },
+            ]}>
             {categories.map(category => {
               // console.log('current category? ' + currentCategory);
               return (
@@ -230,10 +245,6 @@ const App = () => {
           {/* Category selectors end */}
 
           {/* End seller cards */}
-          <Text>
-            If you would like to add a shop to this list or make a correction,
-            contact me at Instagram. @desewtropia
-          </Text>
         </View>
       )}
     </>
@@ -286,7 +297,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   centeredText: {textAlign: 'center'},
-  paddedText: {padding: 20},
+  paddedText: {padding: 10},
   horizontal: {
     flexDirection: 'row',
   },
@@ -305,11 +316,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   sectionContainer: {
-    marginTop: 32,
+    marginTop: 12,
     //   paddingHorizontal: 24,
   },
   headerMiddleBox: {
-    width: '50%',
+    width: '80%',
     margin: 10,
     padding: 10,
     // alignContent: 'center',
@@ -322,14 +333,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     justifyContent: 'center',
     alignContent: 'center',
-    padding: 20,
-    paddingVertical: 30,
-    margin: 20,
+    padding: 10,
+    paddingVertical: 10,
+    margin: 10,
   },
   headerHeadline: {paddingBottom: 10, textAlign: 'center'},
   whiteText: {color: 'white'},
   blackText: {color: 'black'},
-  linkText: {color: 'blue', textDecorationLine: 'underline'},
+  linkText: {color: '#0057B7', textDecorationLine: 'underline'},
   // sectionTitle: {
   //   fontSize: 24,
   //   fontWeight: '600',
