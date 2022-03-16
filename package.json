@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "ukraine",
   "scripts": {
-    "convert-sellers": "echo '{ \"sellers\":' > ./src/assets/sellers.json && yarn csv2json ./src/assets/sellers.csv > ./src/assets/sellers.json.tmp && tail -n +2 ./src/assets/sellers.json.tmp >> ./src/assets/sellers.json && echo '}' >> ./src/assets/sellers.json && rm -f ./src/assets/sellers.json.tmp && yarn prettier -w ./src/assets/sellers.json ",
+    "convert-sellers": "node node_modules/.bin/csv2json ./src/assets/sellers.csv > ./src/assets/sellers.json",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "ios:pods": "npx pod-install",

@@ -23,7 +23,7 @@ import {useAppSettings} from './components/AppSettings';
 import {Seller, SellerCard} from './components/SellerCard';
 import HoverButton from './components/HoverButton';
 
-import sellersJson from './assets/sellers.json';
+import sellers from './assets/sellers.json';
 import {useEffect, useState} from 'react';
 import {LayoutSize, useLayoutInfo} from './components/LayoutInfo';
 
@@ -54,7 +54,6 @@ const App = () => {
   const [filteredSellers, setFilteredSellers] = useState<Seller[]>([]);
 
   useEffect(() => {
-    const sellers = sellersJson.sellers;
     setFilteredSellers(
       sellers
         // Filter the sellers for current category (or 'All')
