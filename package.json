@@ -12,7 +12,7 @@
     "web": "craco start",
     "build-web": "rm -rf build && craco build",
     "publish-web-mike": "rsync --delete -r build/ mikehardy.net:/home/ec2-user/websites/mikehardy.net/htdocs/ukraine",
-    "publish-web-teresa": "rsync --delete -r build/ mikehardy.net:/home/ec2-user/websites/teresahardy.com/htdocs/ukraine",
+    "publish-web-teresa": "rsync --delete -r build/ teresa@mikehardy.net:/home/ec2-user/websites/teresahardy.com/htdocs/ukraine",
     "test:all": "yarn test:jest",
     "test:jest": "jest",
     "lint:all": "yarn lint:eslint && yarn lint:prettier && yarn lint:types",
