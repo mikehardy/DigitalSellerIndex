@@ -3227,25 +3227,17 @@
   {
     "shopName": "Crochet People",
     "hidden": "",
-    "seller": "Olha,\""
-  },
-  {
-    "shopName": "Ivano-Frankivsk\"",
-    "hidden": "CrochetPeople",
-    "seller": "http://www.teresahardy.com/ukraine_images/ava_CrochetPeople.jpg",
-    "city": "http://www.teresahardy.com/ukraine_images/prod_CrochetPeople.jpg",
-    "etsyShopId": "crochet_people,\""
-  },
-  {
-    "shopName": "Crochet swimwear",
-    "hidden": " bikinis",
-    "seller": " bags",
-    "city": " croptops",
-    "etsyShopId": " dresses\"",
-    "avatarURI": "Crochet",
-    "productURI": "",
-    "instagram": "",
-    "products": "\r"
+    "seller": "Olha",
+    "city": "Ivano-Frankivsk",
+    "etsyShopId": "CrochetPeople",
+    "avatarURI": "http://www.teresahardy.com/ukraine_images/ava_CrochetPeople.jpg",
+    "productURI": "http://www.teresahardy.com/ukraine_images/prod_CrochetPeople.jpg",
+    "instagram": "crochet_people",
+    "products": "Crochet swimwear",
+    "category1": " bikinis",
+    "category2": " bags",
+    "category3": " croptops",
+    "category4\r": " dresses\""
   },
   {
     "shopName": "Crochet Toys Basket",
@@ -3285,14 +3277,12 @@
     "etsyShopId": "EmbroideryDesigVovOk",
     "avatarURI": "http://www.teresahardy.com/ukraine_images/ava_EmbroideryDesigVovOk.jpg",
     "productURI": "http://www.teresahardy.com/ukraine_images/prod_EmbroideryDesigVovOk.jpg",
-    "instagram": ",\""
-  },
-  {
-    "shopName": "High Quality Machine Embroidery Designs\"",
-    "hidden": "Embroider",
-    "seller": "",
-    "city": "",
-    "etsyShopId": "\r"
+    "instagram": "",
+    "products": "High Quality Machine Embroidery Designs",
+    "category1": "Embroider",
+    "category2": "",
+    "category3": "",
+    "category4\r": "\r"
   },
   {
     "shopName": "Embroidery Time UA",
@@ -3377,14 +3367,12 @@
     "etsyShopId": "HeartySpot",
     "avatarURI": "http://www.teresahardy.com/ukraine_images/ava_HeartySpot.jpg",
     "productURI": "http://www.teresahardy.com/ukraine_images/prod_HeartySpot.jpg",
-    "instagram": ",\""
-  },
-  {
-    "shopName": "Cross stitch patterns and stitched home decor\"",
-    "hidden": "X Stitch",
-    "seller": "",
-    "city": "",
-    "etsyShopId": "\r"
+    "instagram": "",
+    "products": "Cross stitch patterns and stitched home decor",
+    "category1": "X Stitch",
+    "category2": "",
+    "category3": "",
+    "category4\r": "\r"
   },
   {
     "shopName": "Home Decor Cross Stitch",
@@ -3424,14 +3412,12 @@
     "etsyShopId": "KnitAmiracle",
     "avatarURI": "http://www.teresahardy.com/ukraine_images/ava_KnitAmiracle.jpg",
     "productURI": "http://www.teresahardy.com/ukraine_images/prod_KnitAmiracle.jpg",
-    "instagram": "knitamiracle,\""
-  },
-  {
-    "shopName": "Knitting and Crochet Patterns for Toys and Dolls\"",
-    "hidden": "Knit",
-    "seller": "Crochet",
-    "city": "",
-    "etsyShopId": "\r"
+    "instagram": "knitamiracle",
+    "products": "Knitting and Crochet Patterns for Toys and Dolls",
+    "category1": "Knit",
+    "category2": "Crochet",
+    "category3": "",
+    "category4\r": "\r"
   },
   {
     "shopName": "Kosa Store",
